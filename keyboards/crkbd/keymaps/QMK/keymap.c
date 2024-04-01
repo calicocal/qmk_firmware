@@ -116,6 +116,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_MINUS:
         case RSFT(KC_MINUS):
         case KC_RSFT:
+        case KC_UNDS:
             return true;
 
         default:
