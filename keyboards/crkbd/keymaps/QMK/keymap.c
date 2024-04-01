@@ -28,7 +28,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  , CW_TOGG
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,   CW_TOGG,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_ESC,    LGUI_T(KC_A),    LALT_T(KC_S),    LSFT_T(KC_D),    LCTL_T(KC_F),    KC_G,                         KC_H,    RCTL_T(KC_J),    RSFT_T(KC_K),    RALT_T(KC_L), RGUI_T(KC_SCLN), KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_PIPE, KC_LBRC, KC_DOLLAR, KC_PERCENT, KC_CIRC, KC_RBRC,                      KC_SPACE,  KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI,  KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_BSLASH, KC_MINUS, KC_EXCLAIM, KC_AT, KC_HASH, KC_UNDS,                      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(4),
+      KC_BACKSLASH, KC_MINUS, KC_EXCLAIM, KC_AT, KC_HASH, KC_UNDS,                      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(4),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LEFT_PAREN, KC_BACKSPACE,  KC_RIGHT_PAREN,     KC_NO, KC_TRNS, KC_NO
                                       //`--------------------------'  `--------------------------'
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_NO, KC_F9, KC_F10, KC_F11, KC_F12, KC_PSCR,                      KC_F19, MEH(KC_1), MEH(KC_2), MEH(KC_3), MEH(KC_4), MEH(KC_5),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          LALT_T(KC_LEFT), MEH(KC_F8),  LALT(KC_SPACE),     KC_TRNS, _______, KC_NO
+                                          MEH(KC_F7), MEH(KC_F8),  LALT(KC_SPACE),     KC_TRNS, _______, KC_NO
                                       //`--------------------------'  `--------------------------'
   ),
   [4] = LAYOUT_split_3x6_3(
@@ -123,7 +123,7 @@ bool caps_word_press_user(uint16_t keycode) {
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_select_word_previous(keycode, record, SELWORDP)) { return false; }
     if (!process_select_word(keycode, record, SELWORD)) { return false; }
-    
+
   // Your macros ...
 
   return true;
