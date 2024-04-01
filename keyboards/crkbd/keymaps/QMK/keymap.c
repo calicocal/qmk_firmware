@@ -25,7 +25,8 @@ enum custom_keycodes {
     SELWORDP,
     EMAIL1,
     EMAIL2,
-    W_EMAIL
+    W_EMAIL,
+    MOVE_WIN
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -68,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        KC_MPLY, KC_F1, KC_F2, KC_F3, KC_F4, KC_NO,                      KC_F13, RCS(KC_1), RCS(KC_2), RCS(KC_3), RCS(KC_4), RCS(KC_5),
+        KC_MPLY, KC_F1, KC_F2, KC_F3, KC_F4, MOVE_WIN,                      KC_F13, RCS(KC_1), RCS(KC_2), RCS(KC_3), RCS(KC_4), RCS(KC_5),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_F5, KC_F6, KC_F7, KC_F8, KC_NO,                      DM_PLY1, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, DM_REC1,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -160,6 +161,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 SEND_STRING("callin.ofarrell@dteenergy.com");
             }
             return false;
+        case MOVE_WIN:
+            if (record->event.pressed){
+                tap_code16(LGUI(KC_LEFT));
+            }
     }
   return true;
 }
