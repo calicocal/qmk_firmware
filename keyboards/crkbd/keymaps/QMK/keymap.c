@@ -23,6 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum custom_keycodes {
 	SELWORD = SAFE_RANGE,
     SELWORDP,
+    EMAIL1,
+    EMAIL2,
+    W_EMAIL
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -32,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_ESC,    LGUI_T(KC_A),    LALT_T(KC_S),    LSFT_T(KC_D),    LCTL_T(KC_F),    KC_G,                         KC_H,    RCTL_T(KC_J),    RSFT_T(KC_K),    RALT_T(KC_L), RGUI_T(KC_SCLN), KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_UNDS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           LT(5,KC_DEL), KC_BACKSPACE,  LT(1,KC_TAB),     LT(3,KC_ENTER), LT(2,KC_SPACE), KC_ESC
                                       //`--------------------------'  `--------------------------'
@@ -53,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TILDE, KC_LCBR,   KC_AMPERSAND, KC_ASTERISK,  KC_LEFT_PAREN, KC_RCBR,                      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+       KC_TILDE, KC_LCBR,   KC_AMPERSAND, KC_ASTERISK,  KC_LEFT_PAREN, KC_RCBR,                      KC_NO, EMAIL1, EMAIL2, W_EMAIL, KC_NO, KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_PIPE, KC_LBRC, KC_DOLLAR, KC_PERCENT, KC_CIRC, KC_RBRC,                      KC_SPACE,  KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI,  KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -87,11 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
     [5] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                      KC_INS, KC_PGUP, KC_UP, KC_NO, KC_HOME, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                      KC_INS, KC_PGUP, KC_UP, SELWORD, KC_HOME, KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_NO, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_NO,                      KC_NO, KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO, KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                      KC_NO, KC_PGDN, KC_NO, KC_NO, KC_END, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                      KC_NO, KC_PGDN, KC_NO, SELWORDP, KC_END, KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_TRNS, KC_NO,  KC_NO,     KC_ENT, _______, KC_RALT
                                       //`--------------------------'  `--------------------------'
@@ -125,6 +128,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_select_word(keycode, record, SELWORD)) { return false; }
 
   // Your macros ...
-
+    switch (keycode) {
+        case EMAIL1:
+            if (record->event.pressed){
+                SEND_STRING("calicocal@gmail.com");
+            }
+            return false;
+        case EMAIL2:
+            if (record->event.pressed) {
+                SEND_STRING("callin.ofarrell@gmail.com");
+            }
+            return false;
+        case W_EMAIL:
+            if (record->event.pressed){
+                SEND_STRING("callin.ofarrell@dteenergy.com");
+            }
+            return false;
+    }
   return true;
 }
