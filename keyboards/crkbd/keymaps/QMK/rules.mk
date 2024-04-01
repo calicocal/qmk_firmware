@@ -1,0 +1,14 @@
+SRC += features/select_word.c
+SRC += features/select_word_previous.c
+MOUSEKEY_ENABLE     = yes      # Mouse keys
+RGBLIGHT_ENABLE     = no     # Enable WS2812 RGB underlight.
+VIA_ENABLE          = no     # Enable VIA
+VIAL_ENABLE         = no     # Enable VIAL
+OLED_ENABLE         = no
+OLED_DRIVER         = SSD1306
+EXTRAKEY_ENABLE     = yes
+LTO_ENABLE          = yes	
+QMK_SETTINGS        = no
+COMBO_ENABLE        = no
+CAPS_WORD_ENABLE 	= yes
+DYNAMIC_MACRO_ENABLE = yes
