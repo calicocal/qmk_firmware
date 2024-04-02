@@ -110,11 +110,19 @@ void leader_start_user(void){
 }
 
 void leader_end_user(void){
-    if (leader_sequence_two_keys(KC_S,KC_W)){
+    if (leader_sequence_two_keys(KC_S,KC_W)){ //switch windows in keypirinha
         tap_code16(LALT(KC_SPACE));
         SEND_STRING(SS_DELAY(250)"sw"SS_DELAY(250)SS_TAP(X_ENTER));
-    } else if (leader_sequence_one_key(KC_T)){
-        tap_code16(LALT(KC_SPACE));
+    } else if (leader_sequence_two_keys(KC_F,KC_Z)){ //fancy zones
+        tap_code16(MEH(KC_Z));
+    } else if (leader_sequence_two_keys(KC_C,KC_P)){ //color picker
+        tap_code16(LSG(KC_C));
+    } else if (leader_sequence_three_keys(KC_A,KC_O, KC_T)) { //always on top
+        tap_code16(MEH(KC_T));
+    } else if (leader_sequence_two_keys(KC_T,KC_X)) { // text extractor
+        tap_code16(LSG(KC_T));
+    } else if (leader_sequence_two_keys(KC_M,KC_H)) { // mouse highlighter
+        tap_code16(LSG(KC_H));
     }
 }
 
@@ -163,7 +171,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             return false;
         case MOVE_WIN:
             if (record->event.pressed){
-                tap_code16(LGUI(KC_LEFT));
+                tap_code16(LSG(KC_LEFT));
             }
     }
   return true;
